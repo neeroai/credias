@@ -1,0 +1,31 @@
+{
+  "name": "credias-project",
+  "version": "1.0.0",
+  "description": "CrediAS project with BMad Method integration",
+  "main": "index.js",
+  "scripts": {
+    "dev": "echo 'Development server not configured yet'",
+    "build": "echo 'Build process not configured yet'",
+    "test": "echo 'Test framework not configured yet'",
+    "lint": "echo 'Linting not configured yet'",
+    "bmad:build": "node .bmad-core/tools/cli.js build",
+    "bmad:validate": "node .bmad-core/tools/cli.js validate",
+    "bmad:list": "node .bmad-core/tools/cli.js list:agents"
+  },
+  "keywords": [
+    "credias",
+    "bmad-method",
+    "ai-agents",
+    "agile"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bmad-method": "^4.30.2"
+  },
+  "bmad-method": {
+    "version": "4.30.2",
+    "core": "4.29.0",
+    "expansion-packs": []
+  }
+}
