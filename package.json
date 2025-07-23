@@ -1,31 +1,101 @@
 {
-  "name": "credias-project",
+  "name": "credias-website",
   "version": "1.0.0",
-  "description": "CrediAS project with BMad Method integration",
-  "main": "index.js",
+  "description": "CrediAS landing page - Built with B-MAD Method",
+  "type": "module",
   "scripts": {
-    "dev": "echo 'Development server not configured yet'",
-    "build": "echo 'Build process not configured yet'",
-    "test": "echo 'Test framework not configured yet'",
-    "lint": "echo 'Linting not configured yet'",
-    "bmad:build": "node .bmad-core/tools/cli.js build",
-    "bmad:validate": "node .bmad-core/tools/cli.js validate",
-    "bmad:list": "node .bmad-core/tools/cli.js list:agents"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest --config vitest.config.ts",
+    "test:watch": "vitest --config vitest.config.ts --watch",
+    "test:coverage": "vitest --config vitest.config.ts --coverage",
+    "lint": "eslint . --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext .ts,.tsx --fix",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,css,md}\"",
+    "format:check": "prettier --check \"src/**/*.{ts,tsx,js,jsx,css,md}\"",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.1.1",
+    "@radix-ui/react-accordion": "^1.2.11",
+    "@radix-ui/react-avatar": "^1.1.10",
+    "@radix-ui/react-dialog": "^1.1.14",
+    "@radix-ui/react-dropdown-menu": "^2.1.15",
+    "@radix-ui/react-icons": "^1.3.2",
+    "@radix-ui/react-label": "^2.1.7",
+    "@radix-ui/react-navigation-menu": "^1.2.13",
+    "@radix-ui/react-popover": "^1.1.14",
+    "@radix-ui/react-progress": "^1.1.7",
+    "@radix-ui/react-radio-group": "^1.3.7",
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slider": "^1.3.5",
+    "@radix-ui/react-slot": "^1.2.3",
+    "@radix-ui/react-switch": "^1.2.5",
+    "@radix-ui/react-tabs": "^1.1.12",
+    "@radix-ui/react-tooltip": "^1.2.7",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.525.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.60.0",
+    "tailwind-merge": "^3.3.1",
+    "tailwindcss-animate": "^1.0.7",
+    "zod": "^4.0.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
+    "@types/node": "^24.1.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^2.1.8",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.15.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.14",
+    "globals": "^16.3.0",
+    "husky": "^9.1.7",
+    "jsdom": "^25.0.1",
+    "lint-staged": "^15.2.10",
+    "postcss": "^8.4.49",
+    "prettier": "^3.3.3",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.6.3",
+    "vite": "^6.0.1",
+    "vitest": "^2.1.8"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,md,json}": [
+      "prettier --write"
+    ]
   },
   "keywords": [
     "credias",
+    "creditítulos",
+    "react",
+    "typescript",
+    "vite",
+    "tailwind",
     "bmad-method",
-    "ai-agents",
-    "agile"
+    "fintech"
   ],
-  "author": "",
+  "author": "CrediAS Team",
   "license": "MIT",
-  "dependencies": {
-    "bmad-method": "^4.30.2"
-  },
-  "bmad-method": {
-    "version": "4.30.2",
-    "core": "4.29.0",
-    "expansion-packs": []
+  "engines": {
+    "node": ">=20.17.0",
+    "npm": ">=10.8.2"
   }
 }

@@ -4,19 +4,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**Project Name**: CrediAS (Credit Assessment System)  
-**Purpose**: A comprehensive credit assessment platform leveraging AI-driven development methodologies and BMad Method framework for robust, scalable credit evaluation and risk management solutions.  
-**Target Audience**: Financial institutions, credit agencies, fintech companies, and developers building credit assessment tools.
+**Project Name**: CrediAS Website  
+**Purpose**: Landing page for CrediAS credit platform, built following the B-MAD Method (Build, Measure, Analyze, Deploy)  
+**Target Audience**: End users seeking credit services and developers maintaining the platform
 
 ---
 
 ## To-Do Conventions
 
 - **SEQUENTIAL**: true  
-  <!-- Tasks must be completed in order - next task begins only after previous one is explicitly marked complete -->
-
 - **AUTOMARK**: false  
-  <!-- Tasks are marked complete only when explicitly instructed by user -->
 
 ---
 
@@ -33,143 +30,199 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## Standard Workflow
 
 1. **Planning Phase**: 
-   - Use BMad agents for specialized planning (`/analyst`, `/pm`, `/architect`)
-   - Read codebase for relevant patterns and existing implementations
-   - Create detailed ACTION_PLAN.md with checkboxes for complex tasks
+   - Think through the problem thoroughly
+   - Read the codebase for relevant files and patterns
+   - Write a detailed plan to ACTION_PLAN.md with checkboxes
    
 2. **Approval Phase**: 
-   - Present plan to human for review
+   - Present the plan to the human
    - Wait for explicit approval before proceeding
-   - Address any questions or concerns
+   - Clarify any questions or concerns
    
 3. **Implementation Phase**: 
-   - Work on todo items sequentially using BMad Method
-   - Use `/dev` agent for TDD-based implementation
-   - Use `/qa` agent for code review and quality assurance
-   - Mark tasks complete only when fully done
+   - Work on todo items sequentially
+   - Mark tasks as complete only when fully done
+   - Provide high-level explanations of changes made
    
 4. **Quality Assurance**: 
-   - Run tests after each change
-   - Use linting and type checking
-   - Follow BMad quality standards
+   - Keep every change as simple as possible
+   - Minimize code impact - prefer small, focused changes
+   - Run tests and linting after each change
    
 5. **Documentation**: 
-   - Update stories and documentation
-   - Add review section to ACTION_PLAN.md
-   - Use `/sm` agent for story management
+   - Add a review section to ACTION_PLAN.md
+   - Summarize changes made and lessons learned
+
+### B-MAD Method Integration
+
+The project follows the B-MAD Method within the standard workflow:
+- **BUILD**: Setup and configuration (Planning Phase)
+- **MEASURE**: Design extraction from Figma (Planning/Approval Phase)
+- **ANALYZE**: Component implementation (Implementation Phase)
+- **DEPLOY**: Production deployment (Quality Assurance Phase)
 
 ---
 
 ## Testing Standards (MUST)
 
-- **Write failing tests first (TDD)** - BMad Method core principle
+- **Write failing tests first (TDD)**
 - **Confirm test failures before implementation**
 - **Implement only to make tests pass**
 - **Never modify test files during implementation**
 - **Run tests after each change**
-- **Use `/qa` agent for comprehensive testing validation**
 
 ---
 
 ## Technology Stack
 
-**Framework**: Next.js 15 with App Router
-**Language**: TypeScript
-**Styling**: Tailwind CSS 4
-**UI Components**: shadcn/ui
-**Icons**: Lucide React
-**Utilities**: clsx, tailwind-merge
-**Font**: Inter (Google Fonts)
-**Deployment**: AWS (S3 + CloudFront)
-**AI Framework**: BMad Method v4.30.2 with specialized agents  
-**Design System**: Figma - [CrediAS Design System](https://www.figma.com/design/lXKZe15q21LAnhgKfvO4uN/CrediAS?node-id=2002-6913&t=JUxpHNQAbfawUrZr-1)  
-**Testing**: TDD approach with agent-driven validation
-
----
-
-## BMad Method Integration
-
-### Available Agents
-- `/analyst` - **Mary** 📊 - Market research, competitive analysis, requirements gathering
-- `/pm` - **John** 📋 - Product management, PRD creation, strategy planning
-- `/architect` - **Winston** 🏗️ - System architecture, technical design, scalability planning
-- `/dev` - **James** 💻 - Full-stack development, TDD implementation, debugging
-- `/qa` - **Quinn** 🧪 - Code review, testing validation, quality assurance
-- `/sm` - **Bob** 🏃 - Story creation, epic management, agile processes
-- `/ux-expert` - **Sally** 🎨 - UI/UX design, user experience optimization
-- `/po` - **Sarah** 📝 - Product ownership, backlog management, acceptance criteria
-- `/bmad-orchestrator` - **Team Coordinator** 🎭 - Multi-agent workflows, coordination
-- `/bmad-master` - **Universal Expert** 🧙 - Comprehensive expertise across domains
-
-### BMad Workflow Integration
-1. **Planning Phase**: Use `/analyst` → `/pm` → `/architect` → `/ux-expert`
-2. **Development Phase**: Use `/sm` → `/dev` → `/qa` → `/po`
-3. **Management Phase**: Use `/bmad-orchestrator` for complex multi-agent tasks
+**Framework**: React 18.3.1  
+**Language**: TypeScript 5.x  
+**Database**: N/A (Landing page only)  
+**Styling**: Tailwind CSS v3 with PostCSS + shadcn/ui  
+**UI Library**: shadcn/ui (New York style)  
+**Testing**: Vitest + Testing Library  
+**Build Tools**: Vite  
+**Validation**: Zod + React Hook Form
 
 ---
 
 ## Project Structure
 
 ```
-├── .bmad-core/              # BMad Method framework
-│   ├── agents/             # AI agent definitions
-│   ├── workflows/          # Development workflows
-│   ├── tasks/              # Reusable task definitions
-│   ├── templates/          # Document templates
-│   └── checklists/         # Quality checklists
-├── .claude/commands/BMad/   # Claude Code agent commands
-├── stories/                # Development stories
-├── docs/                   # Project documentation
-├── src/                    # Source code (to be created)
-├── tests/                  # Test files (to be created)
-├── .bmad-config.yaml       # BMad configuration
-└── package.json            # Project configuration
+credias-website/
+├── src/
+│   ├── components/     # Reusable UI components
+│   │   ├── ui/        # shadcn/ui base components (Button, Card, Input, etc.)
+│   │   ├── layout/    # Layout and navigation components
+│   │   └── sections/  # Page sections (Hero, Features, etc.)
+│   ├── lib/           # Utility functions (cn helper, etc.)
+│   ├── hooks/         # Custom React hooks
+│   ├── styles/        # Global styles and CSS variables
+│   ├── utils/         # General utility functions
+│   ├── types/         # TypeScript type definitions
+│   ├── App.tsx        # Main app component
+│   └── main.tsx       # Application entry point
+├── public/            # Static assets
+├── components.json    # shadcn/ui configuration
+├── tailwind.config.js # Tailwind + shadcn/ui configuration
+├── postcss.config.js  # PostCSS configuration
+├── package.json       # Dependencies and scripts
+├── tsconfig.json      # TypeScript configuration with path aliases
+└── vite.config.ts     # Vite configuration
+```
+
+---
+
+## shadcn/ui Standards
+
+### Component Architecture
+- **Base Components**: Use shadcn/ui components from `@/components/ui/`
+- **Composition Pattern**: Build complex components by composing shadcn/ui primitives
+- **Customization**: Extend via className prop, avoid modifying source files
+- **Accessibility**: All shadcn/ui components include WCAG 2.1 AA compliance
+
+### Component Usage Guidelines
+
+#### Preferred Components for Common Use Cases
+```typescript
+// Buttons
+import { Button } from "@/components/ui/button"
+<Button variant="default" size="lg">Primary Action</Button>
+<Button variant="outline" size="md">Secondary</Button>
+<Button variant="ghost" size="sm">Tertiary</Button>
+
+// Cards & Layout
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+<Card>
+  <CardHeader>
+    <CardTitle>Section Title</CardTitle>
+  </CardHeader>
+  <CardContent>Content here</CardContent>
+</Card>
+
+// Forms
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import { Button } from "@/components/ui/button"
+<div className="space-y-2">
+  <Label htmlFor="email">Email</Label>
+  <Input id="email" type="email" placeholder="Enter email" />
+  <Button type="submit">Submit</Button>
+</div>
+
+// Navigation
+import { NavigationMenu } from "@/components/ui/navigation-menu"
+// Use for main navigation and complex menus
+
+// Dialogs & Modals
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+```
+
+### Installation Commands
+```bash
+# Install new components as needed
+npx shadcn@latest add [component-name]
+
+# Example installations
+npx shadcn@latest add badge
+npx shadcn@latest add alert
+npx shadcn@latest add table
+npx shadcn@latest add tabs
+npx shadcn@latest add toast
+```
+
+### Color System Integration
+- **Primary**: Uses brand purple (`--primary: 235 48% 37%`)
+- **Secondary**: Uses brand pink (`--secondary: 342 82% 44%`)
+- **Accent**: Uses brand yellow (`--accent: 48 100% 60%`)
+- **Brand Colors**: Available as `brand-purple-500`, `brand-pink-500`, `brand-yellow-500`
+
+### Component Composition Patterns
+```typescript
+// DO: Compose components using shadcn/ui primitives
+const FeatureCard = ({ title, description }: Props) => (
+  <Card className="h-full">
+    <CardHeader>
+      <CardTitle className="flex items-center gap-2">
+        <Icon className="h-5 w-5 text-primary" />
+        {title}
+      </CardTitle>
+    </CardHeader>
+    <CardContent>
+      <p className="text-muted-foreground">{description}</p>
+    </CardContent>
+  </Card>
+)
+
+// DON'T: Create custom components from scratch when shadcn/ui exists
 ```
 
 ---
 
 ## Development Commands
 
-### BMad Method Commands
-```bash
-# Install BMad Method (for new installations or upgrades)
-npx bmad-method install
-
-# Build the entire project
-npm run build
-
-# Build only agents
-npm run build:agents
-
-# Build only teams
-npm run build:teams
-
-# List available agents
-npm run list:agents
-
-# Validate configuration
-npm run validate
-
-# Format markdown files
-npm run format
-```
-
-### Core Development Commands
 ```bash
 # Installation
 npm install              # Install dependencies
 
-# Development (to be configured)
-npm run dev              # Start development server
+# Development
+npm run dev              # Start development server (port 5173)
 npm run build            # Build for production
 npm run preview          # Preview production build
 
-# Quality Assurance (to be configured)
-npm run test             # Run all tests
+# Quality Assurance
+npm run test             # Run all tests with Vitest
 npm run test:watch       # Run tests in watch mode
-npm run lint             # Run linting
-npm run typecheck        # Run type checking
-npm run format           # Format code
+npm run test:coverage    # Run tests with coverage report
+npm run lint             # Run ESLint
+npm run lint:fix         # Run ESLint with auto-fix
+npm run typecheck        # Run TypeScript compiler check
+npm run format           # Format code with Prettier
+npm run format:check     # Check code formatting
+
+# shadcn/ui Components
+npx shadcn@latest add [component]  # Add new shadcn/ui components
+npx shadcn@latest add button card input  # Add multiple components
 ```
 
 ---
@@ -179,54 +232,48 @@ npm run format           # Format code
 ### QNEW
 When I type "qnew", this means:
 ```
-Understand all BMad Method best practices and agent capabilities.
-Review project structure, coding standards, and quality requirements.
-Prepare to use appropriate BMad agents for the task.
+Understand all BEST PRACTICES listed in CLAUDE.md.
+Your code SHOULD ALWAYS follow these best practices.
+Review the project structure, coding standards, and quality requirements.
 ```
 
 ### QPLAN
 When I type "qplan", this means:
 ```
-Use BMad agents to analyze the codebase and determine:
-- Consistency with existing patterns
-- Minimal changes approach
-- Reuse of existing code and BMad templates
-- Alignment with architectural decisions
+Analyze similar parts of the codebase and determine whether your plan:
+- Is consistent with rest of codebase
+- Introduces minimal changes
+- Reuses existing code and patterns
+- Follows established architectural decisions
 ```
 
 ### QCODE
 When I type "qcode", this means:
 ```
-Use /dev agent to implement with TDD approach.
-Use /qa agent to validate tests and quality.
-Follow BMad Method development standards.
-Run tests to ensure nothing breaks.
+Implement your plan and make sure your new tests pass.
+Always run tests to make sure you didn't break anything else.
+Always run prettier/linting on newly created files.
+Follow TDD: write failing tests first, then implement.
 ```
 
 ### QCHECK
 When I type "qcheck", this means:
 ```
-Use /qa agent as skeptical senior engineer.
-Perform comprehensive code quality analysis.
-Review against BMad quality checklists.
-Identify potential issues and improvements.
-```
-
-### QBMAD
-When I type "qbmad", this means:
-```
-Use /bmad-orchestrator to coordinate multiple agents.
-Apply BMad Method workflow for complex tasks.
-Ensure proper agent collaboration and handoffs.
+You are a SKEPTICAL senior software engineer.
+Perform code quality analysis for every MAJOR change:
+1. Function Quality Checklist
+2. Testing Best Practices Checklist  
+3. Implementation Best Practices
+Look for potential issues, edge cases, and improvements.
 ```
 
 ### QGIT
 When I type "qgit", this means:
 ```
-Add changes to staging, create commit, and push.
+Add all changes to staging, create a commit, and push to remote.
 Use conventional commits format.
-Follow BMad Method git conventions.
-Never refer to Claude or Anthropic in commits.
+Never refer to Claude or Anthropic in commit messages.
+Follow this pattern: <type>[scope]: <description>
 ```
 
 ---
@@ -234,27 +281,99 @@ Never refer to Claude or Anthropic in commits.
 ## Code Quality Standards
 
 ### Function Quality Checklist
-1. **Readability**: Can you easily follow the logic?
-2. **Complexity**: Avoid high cyclomatic complexity
-3. **Data Structures**: Use optimal algorithms and structures
-4. **Parameters**: No unused parameters or unnecessary casts
-5. **Testability**: Easy to test without heavy mocking
-6. **Dependencies**: Minimize hidden dependencies
-7. **Naming**: Consistent with BMad and project vocabulary
-8. **Reuse**: Extract only when reused or improves testability
+
+1. **Readability**: Can you HONESTLY easily follow what it's doing?
+2. **Complexity**: Does it have high cyclomatic complexity (many nested if-else)?
+3. **Data Structures**: Are there better algorithms/data structures available?
+4. **Parameters**: Any unused parameters or unnecessary type casts?
+5. **Testability**: Is it easily testable without heavy mocking?
+6. **Dependencies**: Any hidden dependencies that could be arguments?
+7. **Naming**: Is the name consistent with codebase vocabulary?
+8. **Reuse**: Should this be extracted only if reused or improves testability significantly?
 
 ### Testing Best Practices Checklist
-1. **Parameterize inputs** - no unexplained literals
-2. **Real defects** - tests must fail for actual bugs
-3. **Clear descriptions** - test name states what it verifies
-4. **Independent expectations** - compare to pre-computed values
-5. **Strong assertions** - use specific assertions
-6. **Edge cases** - test boundaries and unexpected input
-7. **Type safety** - don't test type checker conditions
-8. **Structure testing** - test entire structure when possible
-9. **Domain properties** - test invariants and business rules
-10. **Grouped tests** - organize under describe blocks
-11. **Realistic scenarios** - prefer integration over heavy mocking
+
+1. **Parameterize inputs** - never embed unexplained literals
+2. **Real defects** - test must be able to fail for actual bugs
+3. **Clear descriptions** - test name states exactly what the final expect verifies
+4. **Independent expectations** - compare to pre-computed values, not function output
+5. **Strong assertions** - use `toBe(1)` instead of `toBeGreaterThanOrEqual(1)`
+6. **Edge cases** - test boundaries, realistic input, unexpected input
+7. **Type safety** - don't test conditions caught by type checker
+8. **Structure testing** - test entire structure in one assertion when possible
+
+### Implementation Best Practices
+
+**MUST Rules**:
+- Follow TDD: scaffold stub → write failing test → implement
+- Name functions with existing domain vocabulary
+- Colocate unit tests in `*.spec.ts` files
+- Ensure linting and type checking pass
+- Use shadcn/ui components instead of custom UI components
+- Import from `@/components/ui/` for all base components
+
+**SHOULD Rules**:
+- Prefer simple, composable, testable functions
+- Use shadcn/ui + Tailwind CSS utilities, avoid custom CSS
+- Follow React best practices with TypeScript
+- Maintain component reusability
+- Use `cn()` utility for conditional classes
+- Leverage Zod + React Hook Form for form validation
+
+**shadcn/ui Specific Rules**:
+- Always use shadcn/ui components as building blocks
+- Extend components via `className` prop, never modify source
+- Use semantic color tokens (`primary`, `secondary`, `muted`, etc.)
+- Follow shadcn/ui composition patterns for complex components
+
+---
+
+## Figma Design Integration
+
+**Design URL**: https://www.figma.com/design/AWFBI9O2rG27A5Cr6qSHKu/CrediAS?node-id=2274-12564&m=dev
+- **File Key**: AWFBI9O2rG27A5Cr6qSHKu
+- **FIGMA_ACCESS_TOKEN**: [Configure with your Figma token]
+
+### Design Extraction Process
+1. Analyze Figma design for components and sections
+2. Extract design tokens (colors, spacing, typography)
+3. Map components to React component structure
+4. Implement with Tailwind CSS utilities matching design
+
+---
+
+## Project-Specific Requirements
+
+### Current State Awareness
+The project is currently in a **reset state**. All implementation files have been deleted. Only documentation remains:
+- README.md - Project documentation
+- CLAUDE-ref.md - CLAUDE.md reference template
+- CrediAS.fig - Figma design file
+- This CLAUDE.md file
+
+### Performance Requirements
+- **Lighthouse Score**: > 90 for all metrics
+- **Load Time**: < 3 seconds on 3G connections
+- **First Contentful Paint**: < 1.5 seconds
+- **Time to Interactive**: < 3.5 seconds
+
+### Accessibility Requirements
+- **WCAG 2.1 AA** compliance mandatory
+- All interactive elements must be keyboard accessible
+- Proper ARIA labels for screen readers
+- Color contrast ratios must meet AA standards
+
+### SEO Requirements
+- Proper meta tags for all pages
+- Schema markup for business information
+- Open Graph tags for social sharing
+- Semantic HTML structure
+
+### Browser Support
+- Chrome/Edge (latest 2 versions)
+- Firefox (latest 2 versions)
+- Safari (latest 2 versions)
+- Mobile browsers (iOS Safari, Chrome Android)
 
 ---
 
@@ -262,142 +381,78 @@ Never refer to Claude or Anthropic in commits.
 
 ### Code Safety
 - **Never commit secrets or keys to repository**
-- **Never skip TDD process - always test first**
-- **Never modify test files during implementation**
-- **Never assume libraries are available - check first**
-- **Never ignore BMad Method agent recommendations**
+- **Never use `any` type in TypeScript - all types must be explicit**
+- **Never modify test files during implementation phase**
+- **Never skip TDD process - tests first, always**
+- **Never assume libraries are available - check package.json first**
 
 ### Development Practices  
 - **Never create files unless absolutely necessary**
 - **Never add comments unless explicitly requested**
 - **Never break existing functionality without discussion**
-- **Never introduce dependencies without approval**
-- **Never bypass BMad Method workflow for complex tasks**
+- **Never introduce new dependencies without approval**
+- **Never commit directly to main branch**
 
-### BMad Method Violations
-- **Never ignore agent specialization - use appropriate agent**
-- **Never skip story creation for feature development**
-- **Never bypass quality checklists and validation**
-- **Never modify BMad core files without understanding**
-- **Never use generic approaches when BMad templates exist**
+### React/TypeScript Specific
+- **Never use class components - functional components only**
+- **Never use inline styles - shadcn/ui + Tailwind utilities only**
+- **Never ignore TypeScript errors**
+- **Never use document/window without proper checks**
+- **Never create components without proper TypeScript interfaces**
 
----
-
-## BMad Method Workflow
-
-### Phase 1: Planning (Web UI or IDE)
-1. **Market Research**: Use `/analyst` for competitive analysis
-2. **Product Planning**: Use `/pm` to create comprehensive PRD
-3. **Architecture Design**: Use `/architect` for system architecture
-4. **UX Design**: Use `/ux-expert` for user interface design
-
-### Phase 2: Development (IDE)
-1. **Story Creation**: Use `/sm` to create detailed development stories
-2. **Implementation**: Use `/dev` for TDD-based feature development
-3. **Quality Assurance**: Use `/qa` for comprehensive code review
-4. **Story Management**: Use `/po` for backlog refinement
-
-### Phase 3: Coordination
-1. **Multi-Agent Tasks**: Use `/bmad-orchestrator` for complex workflows
-2. **Universal Support**: Use `/bmad-master` for comprehensive assistance
-3. **Story Validation**: Ensure all acceptance criteria are met
+### shadcn/ui Specific
+- **Never modify shadcn/ui component source files directly**
+- **Never create custom UI components when shadcn/ui equivalents exist**
+- **Never use hardcoded colors - use semantic tokens or brand classes**
+- **Never skip accessibility features provided by shadcn/ui**
+- **Never import components without using proper path aliases (@/components/ui/)**
 
 ---
 
 ## Context Management Guidelines
 
 ### Token Economy
-- Keep CLAUDE.md focused on essential project information
+- Keep CLAUDE.md additions minimal and high-value
 - Use bullet points for efficiency
-- Delegate detailed docs to separate files
-- Reference BMad Method docs for framework details
-
-### BMad Method Context
-- BMad agents have built-in context and specialization
-- Use appropriate agent for task type
-- Leverage BMad templates and checklists
-- Maintain story files for development context
+- Reference external docs for detailed information
+- Focus on CrediAS-specific requirements
 
 ### Memory Management
-- Use `/memory` to inspect loaded context
-- Use ACTION_PLAN.md for persistent memory
-- Document decisions in BMad story files
-- Use BMad knowledge base for reference
-
----
-
-## Project-Specific Customization
-
-### Credit Assessment Domain Rules
-- All financial calculations must use decimal precision for accuracy
-- Credit scores must follow industry standards (FICO, VantageScore)
-- All financial data must be encrypted at rest and in transit
-- Audit trails required for all credit decisions
-- Compliance with financial regulations (GDPR, CCPA, etc.)
-
-### BMad Method Customization
-- Use fullstack workflow for comprehensive development
-- Integrate Figma design system with UX agent
-- Apply TDD principles with financial accuracy requirements
-- Use BMad templates for financial documentation
-
----
-
-## Architecture Overview
-
-### BMad Method Architecture
-BMAD-METHOD uses a two-phase approach:
-
-1. **Agentic Planning**: Dedicated agents (Analyst, PM, Architect) collaborate to create detailed PRDs and Architecture documents
-2. **Context-Engineered Development**: Scrum Master agent transforms plans into hyper-detailed development stories for Dev agents
-
-### Key Components
-- **`.bmad-core/`**: Core framework with agents, tasks, templates, and workflows
-- **`.claude/commands/BMad/`**: Claude Code integration for agent commands
-- **`stories/`**: Development stories following BMad methodology
-- **`docs/`**: Project documentation and BMad artifacts
-
-### Available Workflows
-- `greenfield-fullstack`: Complete new application development
-- `brownfield-fullstack`: Enhancement of existing applications
-- `greenfield-ui`: Frontend-focused development
-- `brownfield-ui`: UI improvements and modifications
+- Use ACTION_PLAN.md as persistent memory
+- Document important decisions in appropriate files
+- Keep conversation focused on single features
 
 ---
 
 ## Version Control Standards
 
-### Branch Strategy
-- `main` - production-ready code
-- `develop` - integration branch for features
-- `feature/*` - individual feature branches following BMad stories
-- `hotfix/*` - urgent production fixes
-
 ### Commit Message Format
-Follow conventional commits with BMad context:
 ```
 <type>[optional scope]: <description>
 
-[optional body including BMad story reference]
+[optional body]
 
-[optional footer]
+[optional footer(s)]
 ```
 
-**Types**: feat, fix, docs, style, refactor, test, chore  
+**Types**: feat, fix, docs, style, refactor, test, chore
+
 **Examples**:
-- `feat(auth): add OAuth integration - Story #SM-001`
-- `fix(api): resolve credit calculation precision - Story #SM-002`
-- `docs(readme): update BMad agent usage instructions`
+- `feat(components): add Hero section with CTA`
+- `fix(tailwind): resolve responsive breakpoint issue`
+- `docs(readme): update development setup instructions`
 
 ---
 
 ## Notes and References
 
-- [BMad Method Documentation](https://github.com/bmadcode/bmad-method)
-- [CrediAS Figma Design System](https://www.figma.com/design/lXKZe15q21LAnhgKfvO4uN/CrediAS?node-id=2002-6913&t=JUxpHNQAbfawUrZr-1)
-- [Claude Code Best Practices](https://docs.anthropic.com/en/docs/claude-code)
-- [Conventional Commits](https://www.conventionalcommits.org/)
+### Node Requirements
+- Node.js v20.17.0+
+- npm v10.8.2+
 
-<!-- Last updated: 2025-01-18 -->
-<!-- BMad Method version: 4.30.2 -->
-<!-- Template version: 1.0 -->
+### Important Links
+- [Figma Design](https://www.figma.com/design/AWFBI9O2rG27A5Cr6qSHKu/CrediAS?node-id=2274-12564&m=dev)
+- [B-MAD Method Documentation](implementation-plan.md)
+- [Project README](README.md)
+
+Last updated: 2025-07-23 (Added shadcn/ui integration)

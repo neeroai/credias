@@ -5,6 +5,7 @@
 *.fig
 credias.fig
 CrediAS.fig
+src/design/figma-extract.json
 
 # Node
 node_modules/
@@ -16,6 +17,11 @@ yarn-error.log*
 .env
 .env.local
 .env.*.local
+
+# Secrets and tokens
+**/figma-extract.json
+**/*token*
+**/*secret*
 
 # Build outputs
 dist/

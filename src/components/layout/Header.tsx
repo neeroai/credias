@@ -1,105 +1,147 @@
-import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
-import { NAVIGATION } from '../../utils/constants';
-import Button from '../ui/Button';
+import React, { useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList } from '@/components/ui/navigation-menu'
+import { Separator } from '@/components/ui/separator'
+import { cn } from '@/lib/utils'
 
-const Header: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+interface HeaderProps {
+  className?: string
+}
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+const Header: React.FC<HeaderProps> = ({ className }) => {
+  const [isSheetOpen, setIsSheetOpen] = useState(false)
 
-  const closeMenu = () => {
-    setIsMenuOpen(false);
-  };
-
-  const scrollToSection = (href: string) => {
-    const elementId = href.replace('#', '');
-    const element = document.getElementById(elementId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-    closeMenu();
-  };
+  const navigationItems = [
+    { href: '#productos', label: 'Productos' },
+    { href: '#servicios', label: 'Servicios' },
+    { href: '#nosotros', label: 'Nosotros' },
+    { href: '#contacto', label: 'Contacto' }
+  ]
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-200">
-      <div className="container-custom">
-        <div className="flex items-center justify-between h-16">
+    <header className={cn("bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b sticky top-0 z-50", className)}>
+      <nav className="container-custom" role="navigation" aria-label="Main navigation">
+        <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <div className="flex items-center">
-            <a href="#home" className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gradient-to-r from-primary-blue to-primary-green rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-sm">C</span>
+          <div className="flex-shrink-0">
+            <a 
+              href="#" 
+              className="flex items-center space-x-3 group"
+              aria-label="CrediAS - Inicio"
+            >
+              <img 
+                src="/assets/icons/logotype.png" 
+                alt="CrediAS Logo"
+                className="w-8 h-8 lg:w-10 lg:h-10 transition-transform group-hover:scale-105"
+                onError={(e) => {
+                  // Fallback to gradient icon if image fails to load
+                  const target = e.target as HTMLImageElement
+                  target.style.display = 'none'
+                  const fallback = target.nextElementSibling as HTMLDivElement
+                  if (fallback) fallback.style.display = 'flex'
+                }}
+              />
+              <div className="w-8 h-8 lg:w-10 lg:h-10 bg-gradient-to-r from-brand-purple-500 to-brand-pink-500 rounded-lg hidden items-center justify-center">
+                <span className="text-white font-bold text-lg lg:text-xl">C</span>
               </div>
-              <span className="text-xl font-bold text-gray-900">CrediAS</span>
+              <span className="text-2xl lg:text-3xl font-bold text-foreground">
+                CrediAS
+              </span>
             </a>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
-            {NAVIGATION.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.href)}
-                className="text-gray-600 hover:text-primary-blue transition-colors duration-200 font-medium"
-              >
-                {item.label}
-              </button>
-            ))}
-          </nav>
+          <div className="hidden lg:flex">
+            <NavigationMenu>
+              <NavigationMenuList className="gap-2">
+                {navigationItems.map((item) => (
+                  <NavigationMenuItem key={item.href}>
+                    <NavigationMenuLink
+                      href={item.href}
+                      className={cn(
+                        "group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors",
+                        "hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none",
+                        "disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
+                      )}
+                    >
+                      {item.label}
+                    </NavigationMenuLink>
+                  </NavigationMenuItem>
+                ))}
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
-            <Button
-              variant="primary"
-              size="sm"
-              onClick={() => scrollToSection('#contact')}
-            >
+          {/* CTA Buttons */}
+          <div className="hidden lg:flex items-center space-x-3">
+            <Button variant="ghost" size="default">
+              Iniciar Sesión
+            </Button>
+            <Button size="default" className="bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90">
               Solicitar Crédito
             </Button>
           </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2 rounded-md text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-200"
-            onClick={toggleMenu}
-            aria-label="Toggle menu"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t border-gray-200">
-              {NAVIGATION.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.href)}
-                  className="block w-full text-left px-3 py-2 text-gray-600 hover:text-primary-blue hover:bg-gray-50 rounded-md transition-colors duration-200 font-medium"
-                >
-                  {item.label}
-                </button>
-              ))}
-              <div className="px-3 py-2">
+          {/* Mobile Sheet Menu */}
+          <div className="lg:hidden">
+            <Sheet open={isSheetOpen} onOpenChange={setIsSheetOpen}>
+              <SheetTrigger asChild>
                 <Button
-                  variant="primary"
+                  variant="ghost"
                   size="sm"
-                  fullWidth
-                  onClick={() => scrollToSection('#contact')}
+                  aria-label="Abrir menú de navegación"
                 >
-                  Solicitar Crédito
+                  <svg className="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  </svg>
                 </Button>
-              </div>
-            </div>
+              </SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <SheetTitle className="text-left">CrediAS</SheetTitle>
+                  <SheetDescription className="text-left">
+                    Tu aliado confiable en soluciones de crédito
+                  </SheetDescription>
+                </SheetHeader>
+                
+                <div className="grid gap-4 py-6">
+                  {navigationItems.map((item) => (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      className="flex items-center py-3 text-lg font-medium transition-colors hover:text-primary"
+                      onClick={() => setIsSheetOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                  
+                  <Separator className="my-4" />
+                  
+                  <div className="flex flex-col space-y-3">
+                    <Button 
+                      variant="outline" 
+                      className="w-full" 
+                      onClick={() => setIsSheetOpen(false)}
+                    >
+                      Iniciar Sesión
+                    </Button>
+                    <Button 
+                      className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90" 
+                      onClick={() => setIsSheetOpen(false)}
+                    >
+                      Solicitar Crédito
+                    </Button>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
-        )}
-      </div>
+        </div>
+      </nav>
     </header>
-  );
-};
+  )
+}
 
-export default Header; 
+export default Header

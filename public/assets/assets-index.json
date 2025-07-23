@@ -1,0 +1,125 @@
+{
+  "timestamp": "2025-07-23T00:14:15.494Z",
+  "assets": [
+    {
+      "id": "I2051:2503;3419:20182",
+      "name": "Description and Logo",
+      "type": "ICON",
+      "path": "/assets/icons/description-and-logo.png"
+    },
+    {
+      "id": "I2051:2503;2051:1865",
+      "name": "LOGOTYPE",
+      "type": "ICON",
+      "path": "/assets/icons/logotype.png"
+    },
+    {
+      "id": "2051:2510",
+      "name": "BANNER",
+      "type": "COMPONENT",
+      "path": "/assets/images/banner.png"
+    },
+    {
+      "id": "2051:2514",
+      "name": "Banner",
+      "type": "COMPONENT",
+      "path": "/assets/images/banner.png"
+    },
+    {
+      "id": "I2051:2582;3368:22182",
+      "name": "image 1",
+      "type": "IMAGE",
+      "path": "/assets/images/image-1.png"
+    },
+    {
+      "id": "I2051:2582;3368:22184",
+      "name": "image 2",
+      "type": "IMAGE",
+      "path": "/assets/images/image-2.png"
+    },
+    {
+      "id": "I2051:2587;14763:93350",
+      "name": "Icon",
+      "type": "ICON",
+      "path": "/assets/icons/icon.png"
+    },
+    {
+      "id": "I2051:2587;14763:93352",
+      "name": "Icon",
+      "type": "ICON",
+      "path": "/assets/icons/icon.png"
+    },
+    {
+      "id": "I2051:2587;14763:93354",
+      "name": "Icon",
+      "type": "ICON",
+      "path": "/assets/icons/icon.png"
+    },
+    {
+      "id": "I2051:2588;14763:93350",
+      "name": "Icon",
+      "type": "ICON",
+      "path": "/assets/icons/icon.png"
+    },
+    {
+      "id": "I2051:2588;14763:93352",
+      "name": "Icon",
+      "type": "ICON",
+      "path": "/assets/icons/icon.png"
+    },
+    {
+      "id": "I2051:2588;14763:93354",
+      "name": "Icon",
+      "type": "ICON",
+      "path": "/assets/icons/icon.png"
+    },
+    {
+      "id": "I2051:2589;14763:93350",
+      "name": "Icon",
+      "type": "ICON",
+      "path": "/assets/icons/icon.png"
+    },
+    {
+      "id": "I2051:2589;14763:93352",
+      "name": "Icon",
+      "type": "ICON",
+      "path": "/assets/icons/icon.png"
+    },
+    {
+      "id": "I2051:2589;14763:93354",
+      "name": "Icon",
+      "type": "ICON",
+      "path": "/assets/icons/icon.png"
+    },
+    {
+      "id": "I2051:2595;3368:22138",
+      "name": "image 1",
+      "type": "IMAGE",
+      "path": "/assets/images/image-1.png"
+    },
+    {
+      "id": "I2051:2595;3368:22140",
+      "name": "image 2",
+      "type": "IMAGE",
+      "path": "/assets/images/image-2.png"
+    },
+    {
+      "id": "I2051:2595;3368:22141",
+      "name": "image 3",
+      "type": "IMAGE",
+      "path": "/assets/images/image-3.png"
+    },
+    {
+      "id": "I2051:2595;3368:22143",
+      "name": "image 1",
+      "type": "IMAGE",
+      "path": "/assets/images/image-1.png"
+    },
+    {
+      "id": "I2051:2595;3368:22144",
+      "name": "image 2",
+      "type": "IMAGE",
+      "path": "/assets/images/image-2.png"
+    }
+  ]
+}
